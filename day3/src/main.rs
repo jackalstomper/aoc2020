@@ -2,7 +2,6 @@
 
 use std::fs::File;
 use std::io::prelude::*;
-use std::io::{self, BufRead};
 
 extern crate test;
 use test::Bencher;
@@ -40,12 +39,7 @@ fn get_hits(forest: &[u8], right_step: usize, down_step: usize) -> usize {
     let mut hit_count = 0;
     let mut x = 0usize;
     let mut y = 0usize;
-    loop {
-        if y + x >= forest.len() {
-            // complete
-            break;
-        }
-
+    while y + x < forest.len() {
         if x >= width {
             x = x - width;
         }
